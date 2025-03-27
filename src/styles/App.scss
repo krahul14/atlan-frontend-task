@@ -1,0 +1,238 @@
+@use './variables' as v;
+@use './table';
+
+// Base styles
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1rem;
+  background-color: v.$background-light;
+  color: v.$text-light;
+
+  &.dark-mode {
+    background-color: v.$background-dark;
+    color: v.$text-dark;
+  }
+}
+
+// Header styles
+header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid v.$border-light;
+
+  .dark-mode & {
+    border-bottom-color: v.$border-dark;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  .theme-toggle {
+    align-self: flex-start;
+    background: v.$button-light;
+    color: v.$text-light;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+
+    .dark-mode & {
+      background: v.$button-dark;
+      color: v.$text-dark;
+    }
+  }
+}
+
+// Main layout
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+.query-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.results-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+}
+
+// Query selector
+.query-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-weight: 500;
+  }
+
+  select {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid v.$border-light;
+    background-color: v.$input-light;
+    color: v.$text-light;
+    font-size: 0.875rem;
+
+    .dark-mode & {
+      border-color: v.$border-dark;
+      background-color: v.$input-dark;
+      color: v.$text-dark;
+    }
+  }
+}
+
+// Query editor container
+.query-editor {
+  border: 1px solid v.$border-light;
+  border-radius: 4px;
+  overflow: hidden;
+
+  .dark-mode & {
+    border-color: v.$border-dark;
+  }
+}
+
+// Query actions
+.query-actions {
+  display: flex;
+  gap: 0.5rem;
+
+  button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: v.$primary;
+    color: white;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: v.$primary-dark;
+    }
+
+    &:disabled {
+      background-color: v.$disabled;
+      cursor: not-allowed;
+    }
+
+    &:last-child {
+      background-color: v.$secondary;
+
+      &:hover {
+        background-color: v.$secondary-dark;
+      }
+    }
+  }
+}
+
+// Query history
+.query-history {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 4px;
+  background-color: v.$background-light-secondary;
+  border: 1px solid v.$border-light;
+
+  .dark-mode & {
+    background-color: v.$background-dark-secondary;
+    border-color: v.$border-dark;
+  }
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+
+    li {
+      margin-bottom: 0.25rem;
+
+      button {
+        width: 100%;
+        text-align: left;
+        padding: 0.25rem 0.5rem;
+        background: none;
+        border: none;
+        color: v.$link-light;
+        cursor: pointer;
+        border-radius: 3px;
+        font-size: 0.875rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        &:hover {
+          background-color: rgba(v.$primary, 0.1);
+        }
+
+        .dark-mode & {
+          color: v.$link-dark;
+
+          &:hover {
+            background-color: rgba(v.$primary, 0.3);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 767px) {
+  .query-actions {
+    flex-direction: column;
+  }
+
+  .query-history {
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .app {
+    padding: 2rem;
+    max-width: 100vw;
+    margin: 0;
+  }
+}

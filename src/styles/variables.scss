@@ -1,0 +1,26 @@
+@use 'sass:color';
+
+// Colors
+$primary: #4a6fa5;
+$primary-dark: color.adjust($primary, $lightness: -10%);
+$secondary: #6c757d;
+$secondary-dark: color.adjust($secondary, $lightness: -10%);
+$disabled: #cccccc;
+
+// Light theme
+$background-light: #f5f5f5;
+$background-light-secondary: #ffffff;
+$text-light: #333333;
+$border-light: #dddddd;
+$input-light: #ffffff;
+$button-light: #e0e0e0;
+$link-light: #4a6fa5;
+
+// Dark theme
+$background-dark: #1a1a1a;
+$background-dark-secondary: #2d2d2d;
+$text-dark: #e0e0e0;
+$border-dark: #444444;
+$input-dark: #333333;
+$button-dark: #444444;
+$link-dark: #7aa2f7;
